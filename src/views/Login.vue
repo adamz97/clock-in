@@ -30,10 +30,7 @@ export default {
 }
 .centerForm {
   padding: 25px;
-  border-style: solid;
-  border-color: #f5f5f5;
-  border-radius: 10px;
-  border-width: 3px;
+
   margin: auto;
   width: 70%;
 }
