@@ -57,7 +57,8 @@ export default {
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password);
         console.log(user);
-        this.$router.replace({ name: "userloggedin" });
+        alert("Successfully registered! Please login.");
+        this.$router.replace({ name: "login" });
       } catch (error) {
         alert(error);
         this.email = "";

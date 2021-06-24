@@ -47,6 +47,7 @@ export default {
           .auth()
           .signInWithEmailAndPassword(this.email, this.password);
         console.log(login);
+        alert("Successfully logged in !");
         this.$router.replace({ name: "userloggedin" });
       } catch (error) {
         alert(error);
