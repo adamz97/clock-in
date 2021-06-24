@@ -10,7 +10,30 @@
       <v-tab to="/register"> Register </v-tab>
     </v-tabs>
     <v-col v-else class="text-right">
-      <v-btn color="yellow lighten-4" to="/login">Log Out</v-btn>
+      <v-btn @click="signOut" color="yellow lighten-4">Log Out</v-btn>
     </v-col>
   </v-app-bar>
 </template>
+
+<script>
+import firebase from "firebase/app";
+import "firebase/auth";
+
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    async signOut() {
+      try {
+        const data = await firebase.auth().signOut();
+        console.log(data);
+        alert("Logged Out");
+        this.$router.replace({ name: "login" });
+      } catch (error) {
+        alert(error);
+      }
+    },
+  },
+};
+</script>

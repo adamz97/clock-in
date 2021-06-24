@@ -2,7 +2,7 @@
   <v-container>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="6">
-        <v-form>
+        <v-form @submit.prevent="login">
           <v-text-field
             ref="email"
             v-model="email"
@@ -20,7 +20,7 @@
             type="password"
             required
           ></v-text-field>
-          <v-btn block to="userloggedin" type="submit" color="yellow lighten-3">
+          <v-btn block type="submit" color="yellow lighten-3">
             Login
           </v-btn>
         </v-form>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/auth";
 export default {
   data() {
     return {
@@ -38,7 +40,21 @@ export default {
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    async login() {
+      try {
+        const login = await firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password);
+        console.log(login);
+        this.$router.replace({ name: "userloggedin" });
+      } catch (error) {
+        alert(error);
+        this.email = "";
+        this.password = "";
+      }
+    },
+  },
 };
 </script>
 
