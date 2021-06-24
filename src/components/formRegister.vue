@@ -5,12 +5,9 @@
         <v-form @submit.prevent="register">
           <v-text-field
             v-model="username"
-            :error-messages="userNameErrors"
             :counter="10"
             label="Username"
             required
-            @input="$v.username.$touch()"
-            @blur="$v.username.$touch()"
             type="text"
             color="grey darken-3"
           ></v-text-field>
@@ -31,7 +28,7 @@
             type="password"
           ></v-text-field>
 
-          <v-btn type="submit" block color="yellow lighten-3">
+          <v-btn disabled type="submit" block color="yellow lighten-3">
             Register
           </v-btn>
         </v-form>
@@ -41,23 +38,7 @@
 </template>
 
 <script>
-import { validationMixin } from "vuelidate";
-import {
-  required,
-  minLength,
-  maxLength,
-  email,
-} from "vuelidate/lib/validators";
-
 export default {
-  mixins: [validationMixin],
-
-  validations: {
-    username: { required, maxLength: maxLength(10) },
-    email: { required, email },
-    password: { required, minLength: minLength(8) },
-  },
-
   data() {
     return {
       username: "",
@@ -66,16 +47,7 @@ export default {
     };
   },
 
-  computed: {
-    userNameErrors() {
-      const errors = [];
-      if (!this.$v.userName.$dirty) return errors;
-      !this.$v.userName.maxLength &&
-        errors.push("UserName must be at most 10 characters long");
-      !this.$v.userName.required && errors.push("UserName is required.");
-      return errors;
-    },
-  },
+  computed: {},
   methods: {
     register() {
       fetch(
@@ -90,8 +62,7 @@ export default {
             email: this.email,
             password: this.password,
           }),
-        },
-        this.$v.$touch()
+        }
       );
 
       this.username = "";

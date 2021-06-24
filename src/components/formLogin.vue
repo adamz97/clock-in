@@ -20,13 +20,7 @@
             type="password"
             required
           ></v-text-field>
-          <v-btn
-            disabled
-            block
-            to="userloggedin"
-            type="submit"
-            color="yellow lighten-3"
-          >
+          <v-btn block to="userloggedin" type="submit" color="yellow lighten-3">
             Login
           </v-btn>
         </v-form>
