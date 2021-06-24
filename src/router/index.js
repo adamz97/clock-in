@@ -12,7 +12,7 @@ const routes = [
   { path: "/adminpage", component: AdminPage },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
-  { path: "/userloggedin", component: UserLoggedIn },
+  { path: "/userloggedin", component: UserLoggedIn, meta: { hideTabs: true } },
 ];
 
 const router = new VueRouter({

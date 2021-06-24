@@ -1,7 +1,7 @@
 <template>
   <v-sheet min-height="70vh" rounded="lg">
-    <p class="timer">{{ formattedElapsedTime }}</p>
     <v-container>
+      <p class="timer">{{ formattedElapsedTime }}</p>
       <v-row>
         <v-col sm="12">
           <v-card tile class="pa-4">
@@ -68,5 +68,6 @@ export default {
   padding: 35px;
   text-align: center;
   font-size: 75px;
+  margin-top: 30px;
 }
 </style>
