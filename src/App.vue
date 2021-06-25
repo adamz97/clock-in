@@ -1,29 +1,18 @@
 <template>
-  <v-app id="inspire">
+  <v-app class="font" id="inspire">
     <the-header></the-header>
     <v-main class="grey lighten-3">
       <v-container>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="6">
-            <v-toolbar-title class="title">Clock-In ⏳</v-toolbar-title>
+            <v-toolbar-title align="center">Clock-In ⏳</v-toolbar-title>
             <router-view></router-view>
           </v-col>
         </v-row>
       </v-container>
+      <the-alert></the-alert>
     </v-main>
-    <v-alert
-      class="alert"
-      transition="scroll-x-transition"
-      type="info"
-      :value="alert"
-      border="right"
-      colored-border
-      color="yellow lighten-2"
-      elevation="2"
-      width="25%"
-    >
-      Zarejestrowano pomyślnie
-    </v-alert>
+
     <the-footer></the-footer>
   </v-app>
 </template>
@@ -31,26 +20,36 @@
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import TheFooter from "./components/layout/TheFooter.vue";
+//import TheAlert from "./components/layout/TheAlert.vue";
 export default {
   components: {
     TheHeader,
     TheFooter,
+    //TheAlert,
   },
   data() {
     return {
       alert: false,
     };
   },
+  mounted() {
+    fetch("https://vue-project-7821e-default-rtdb.firebaseio.com/users.json")
+      .then((res) => res.json())
+      .then((data) => (this.users = data))
+      .catch((err) => console.log(err.message));
+  },
 };
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 html {
   overflow-y: hidden;
 }
-.title {
-  text-align: center;
+.font {
+  font-family: "Nunito", sans-serif;
 }
+
 .alert {
   float: right;
 }

@@ -2,18 +2,24 @@
   <v-container>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="6">
-        <v-form @submit.prevent="register">
-          <!-- <v-text-field
-            v-model="username"
-            :counter="10"
+        <v-form
+          ref="form"
+          v-model="valid"
+          @submit.prevent="register"
+          lazy-validation
+        >
+          <v-text-field
+            :rules="userNameRules"
+            v-model="user.userName"
             label="Username"
             required
             type="text"
             color="grey darken-3"
-          ></v-text-field> -->
+          ></v-text-field>
 
           <v-text-field
-            v-model="email"
+            v-model="user.email"
+            :rules="emailRules"
             color="grey darken-3"
             label="E-mail"
             type="email"
@@ -21,14 +27,21 @@
           ></v-text-field>
 
           <v-text-field
-            v-model="password"
+            v-model="user.password"
+            :rules="passwordRules"
             color="grey darken-3"
             label="Password"
             required
             type="password"
           ></v-text-field>
 
-          <v-btn type="submit" block color="yellow lighten-3">
+          <v-btn
+            :disabled="!valid"
+            @click="validate"
+            type="submit"
+            block
+            color="yellow lighten-3"
+          >
             Register
           </v-btn>
         </v-form>
@@ -40,12 +53,17 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
-
+import rulesMixin from "../mixins/rules.js";
 export default {
+  mixins: [rulesMixin],
+
   data() {
     return {
-      password: "",
-      email: "",
+      user: {
+        userName: "",
+        email: "",
+        password: "",
+      },
     };
   },
 
@@ -55,14 +73,29 @@ export default {
       try {
         const user = await firebase
           .auth()
-          .createUserWithEmailAndPassword(this.email, this.password);
+          .createUserWithEmailAndPassword(this.user.email, this.user.password);
         console.log(user);
-        alert("Successfully registered! Please login.");
+        alert("Successfully registered!!! Please login.");
         this.$router.replace({ name: "login" });
       } catch (error) {
         alert(error);
-        this.email = "";
-        this.password = "";
+        this.user.userName = "";
+        this.user.email = "";
+        this.user.password = "";
+      }
+      try {
+        await fetch(
+          "https://vue-project-7821e-default-rtdb.firebaseio.com/users.json",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              username: this.user.userName,
+              email: this.user.email,
+            }),
+          }
+        );
+      } catch (error) {
+        console.log(error);
       }
     },
   },

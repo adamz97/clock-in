@@ -8,6 +8,7 @@
     >
       <v-tab to="/login"> Login </v-tab>
       <v-tab to="/register"> Register </v-tab>
+      <v-tab to="/adminpage"> Admin </v-tab>
     </v-tabs>
     <v-col v-else class="text-right">
       <v-btn @click="signOut" color="yellow lighten-4">Log Out</v-btn>

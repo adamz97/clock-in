@@ -1,12 +1,11 @@
 import Vue from "vue";
 import "./plugins/axios";
-
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-
 import firebase from "firebase/app";
+import "firebase/database";
 
 Vue.config.productionTip = false;
 
@@ -22,6 +21,21 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+// var usersRef = firebase.database().ref("/users");
+
+// usersRef.once =
+//   ("value",
+//   function(snapshot) {
+//     let users = [];
+
+//     snapshot.forEach(function(childSnapshot) {
+//       let key = childSnapshot.key;
+//       let data = childSnapshot.val();
+
+//       users.push({ key: key, username: data.username, email: data.email });
+//     });
+//   });
 
 let app;
 

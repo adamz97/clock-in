@@ -11,7 +11,12 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: "/", redirect: "/login" },
-  { name: "admin", path: "/adminpage", component: AdminPage },
+  {
+    name: "admin",
+    path: "/adminpage",
+    component: AdminPage,
+    // meta: { hideTabs: true },
+  },
   { name: "login", path: "/login", component: Login },
   { name: "register", path: "/register", component: Register },
   {
