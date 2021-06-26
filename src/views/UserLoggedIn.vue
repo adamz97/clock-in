@@ -1,7 +1,6 @@
 <template>
   <v-sheet min-height="70vh" rounded="lg">
     <v-container>
-      <p></p>
       <p class="timer">{{ formattedElapsedTime }}</p>
       <v-row>
         <v-col sm="12">
@@ -34,7 +33,6 @@
 
 <script>
 export default {
-  name: "App",
   data() {
     return {
       elapsedTime: 0,

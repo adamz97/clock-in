@@ -15,7 +15,7 @@
                 }}</v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action>
-                <p class="font-weight-bold">00:00:00</p>
+                <p class="font-weight-bold"></p>
               </v-list-item-action>
             </v-list-item>
           </template>
@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  components: {},
   data() {
     return {
       users: [],

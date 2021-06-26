@@ -10,7 +10,6 @@
           </v-col>
         </v-row>
       </v-container>
-      <the-alert></the-alert>
     </v-main>
 
     <the-footer></the-footer>
@@ -20,23 +19,15 @@
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import TheFooter from "./components/layout/TheFooter.vue";
-//import TheAlert from "./components/layout/TheAlert.vue";
+
 export default {
+  name: "app",
   components: {
     TheHeader,
     TheFooter,
-    //TheAlert,
   },
   data() {
-    return {
-      alert: false,
-    };
-  },
-  mounted() {
-    fetch("https://vue-project-7821e-default-rtdb.firebaseio.com/users.json")
-      .then((res) => res.json())
-      .then((data) => (this.users = data))
-      .catch((err) => console.log(err.message));
+    return {};
   },
 };
 </script>

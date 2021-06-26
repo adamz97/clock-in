@@ -22,21 +22,6 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// var usersRef = firebase.database().ref("/users");
-
-// usersRef.once =
-//   ("value",
-//   function(snapshot) {
-//     let users = [];
-
-//     snapshot.forEach(function(childSnapshot) {
-//       let key = childSnapshot.key;
-//       let data = childSnapshot.val();
-
-//       users.push({ key: key, username: data.username, email: data.email });
-//     });
-//   });
-
 let app;
 
 firebase.auth().onAuthStateChanged((user) => {
