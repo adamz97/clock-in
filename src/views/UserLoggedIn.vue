@@ -10,14 +10,14 @@
             >
           </v-card>
           <v-row no-gutters>
-            <v-col cols="8" sm="6">
+            <v-col cols="6" sm="6">
               <v-card tile class="pa-4">
                 <v-btn color="yellow lighten-5" block @click="reset"
                   >Reset</v-btn
                 >
               </v-card>
             </v-col>
-            <v-col cols="4" sm="6">
+            <v-col cols="6" sm="6">
               <v-card tile class="pa-4">
                 <v-btn color="yellow lighten-5" block tile @click="stop"
                   >Stop</v-btn
@@ -65,7 +65,7 @@ export default {
 </script>
 <style scoped>
 .timer {
-  padding: 35px;
+  padding: 20px;
   text-align: center;
   font-size: 75px;
   margin-top: 30px;
