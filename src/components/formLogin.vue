@@ -64,16 +64,10 @@ export default {
         this.$router.replace({ name: "userloggedin" });
       } catch (error) {
         console.log(error);
-        alert("Email or password was invalid. Try again");
+        alert(error);
         this.email = "";
         this.password = "";
       }
-      // if (
-      //   !(this.email === "admin@gmail.com" && this.password === "admin12345")
-      // ) {
-      //   alert.log("Loggedd in as")
-      //   this.$router.replace({ name: "admin" });
-      // }
     },
   },
 };
