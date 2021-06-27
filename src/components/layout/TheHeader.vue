@@ -8,7 +8,7 @@
     >
       <v-tab to="/login"> Login </v-tab>
       <v-tab to="/register"> Register </v-tab>
-      <v-tab to="/adminpage"> Admin </v-tab>
+      <v-tab @click="openDialog"> Admin </v-tab>
     </v-tabs>
     <v-col v-else class="text-right">
       <v-btn @click="signOut" color="yellow lighten-4">Log Out</v-btn>
@@ -33,6 +33,16 @@ export default {
         this.$router.replace({ name: "login" });
       } catch (error) {
         alert(error);
+      }
+    },
+    openDialog() {
+      let a = prompt("Enter Admin Login");
+      let b = prompt("Enter Admin password");
+      if (a == "admin" && b == "admin") {
+        this.$router.replace({ name: "admin" });
+      } else {
+        alert("Wrong credentials");
+        this.$router.replace({ name: "login" });
       }
     },
   },
