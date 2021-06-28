@@ -1,6 +1,7 @@
 <template>
   <v-sheet min-height="70vh" rounded="lg">
     <v-container>
+      <p class="title">Hi, {{ user.displayName }}</p>
       <p class="timer">{{ formattedElapsedTime }}</p>
       <v-row>
         <v-col sm="12">
@@ -32,14 +33,24 @@
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
   data() {
     return {
+      user: null,
       elapsedTime: 0,
       timer: undefined,
     };
   },
-
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+      } else {
+        this.user = null;
+      }
+    });
+  },
   computed: {
     formattedElapsedTime() {
       const date = new Date(null);
@@ -69,5 +80,8 @@ export default {
   text-align: center;
   font-size: 75px;
   margin-top: 30px;
+}
+.title {
+  padding: 15px;
 }
 </style>

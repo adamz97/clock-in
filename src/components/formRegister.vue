@@ -9,6 +9,15 @@
           lazy-validation
         >
           <v-text-field
+            v-model="user.name"
+            :rules="nameRules"
+            color="grey darken-3"
+            label="Name"
+            type="text"
+            required
+          ></v-text-field>
+
+          <v-text-field
             v-model="user.email"
             :rules="emailRules"
             color="grey darken-3"
@@ -44,6 +53,7 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+
 import rulesMixin from "../mixins/rules.js";
 export default {
   mixins: [rulesMixin],
@@ -51,19 +61,23 @@ export default {
   data() {
     return {
       user: {
+        name: "",
         email: "",
         password: "",
       },
     };
   },
-
-  computed: {},
   methods: {
     async register() {
       try {
         const user = await firebase
           .auth()
-          .createUserWithEmailAndPassword(this.user.email, this.user.password);
+          .createUserWithEmailAndPassword(this.user.email, this.user.password)
+          .then((res) => {
+            res.user.updateProfile({
+              displayName: this.user.name,
+            });
+          });
         console.log(user);
         alert("Successfully registered!!! Please login.");
         this.$router.replace({ name: "login" });

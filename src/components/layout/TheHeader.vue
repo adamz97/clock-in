@@ -20,9 +20,11 @@
       </v-tab>
       <v-tab href="#tab-3" @change="toggleDialog('admin')"> Admin </v-tab>
     </v-tabs>
-    <v-col v-else class="text-right">
-      <v-btn @click="signOut" color="yellow lighten-4">Log Out</v-btn>
-    </v-col>
+    <v-row no-gutters v-else>
+      <v-col class="text-right">
+        <v-btn @click="signOut" color="yellow lighten-4">Log Out</v-btn>
+      </v-col>
+    </v-row>
   </v-app-bar>
 </template>
 
@@ -42,6 +44,7 @@ export default {
       tabControll: "None Tab",
     };
   },
+
   methods: {
     async signOut() {
       try {

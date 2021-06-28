@@ -2,11 +2,8 @@ export default {
   data() {
     return {
       valid: true,
-      userNameRules: [
-        (v) => !!v || "Username is required",
-        (v) =>
-          (v && v.length >= 6) || "Username must have more than 6 characters",
-      ],
+      nameRules: [(v) => !!v || "Name is required"],
+
       emailRules: [
         (v) => !!v || "Email is required",
         (v) => /.+@.+\..+/.test(v) || "Email must be valid",
