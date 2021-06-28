@@ -9,15 +9,6 @@
           lazy-validation
         >
           <v-text-field
-            :rules="userNameRules"
-            v-model="user.userName"
-            label="Username"
-            required
-            type="text"
-            color="grey darken-3"
-          ></v-text-field>
-
-          <v-text-field
             v-model="user.email"
             :rules="emailRules"
             color="grey darken-3"
@@ -60,7 +51,6 @@ export default {
   data() {
     return {
       user: {
-        userName: "",
         email: "",
         password: "",
       },
@@ -79,23 +69,9 @@ export default {
         this.$router.replace({ name: "login" });
       } catch (error) {
         alert(error);
-        this.user.userName = "";
+
         this.user.email = "";
         this.user.password = "";
-      }
-      try {
-        await fetch(
-          "https://vue-project-7821e-default-rtdb.firebaseio.com/users.json",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              username: this.user.userName,
-              email: this.user.email,
-            }),
-          }
-        );
-      } catch (error) {
-        console.log(error);
       }
     },
   },

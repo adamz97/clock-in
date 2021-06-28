@@ -15,7 +15,10 @@
                 }}</v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action>
-                <p class="font-weight-bold"></p>
+                <p class="font-weight-medium">Work started: 08:00</p>
+              </v-list-item-action>
+              <v-list-item-action>
+                <p class="font-weight-medium">Work ended: 16:00</p>
               </v-list-item-action>
             </v-list-item>
           </template>
@@ -32,12 +35,6 @@ export default {
     return {
       users: [],
     };
-  },
-  mounted() {
-    fetch("https://vue-project-7821e-default-rtdb.firebaseio.com/users.json")
-      .then((res) => res.json())
-      .then((data) => (this.users = data))
-      .catch((err) => console.log(err.message));
   },
 };
 </script>

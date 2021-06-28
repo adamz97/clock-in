@@ -6,12 +6,12 @@
         <v-row align="center" justify="center">
           <v-col cols="12" sm="6">
             <v-toolbar-title align="center">Clock-In ⏳</v-toolbar-title>
-
-            <router-view></router-view>
+            <router-view> </router-view>
           </v-col>
         </v-row>
       </v-container>
     </v-main>
+
     <the-footer></the-footer>
   </v-app>
 </template>
@@ -21,15 +21,12 @@ import TheHeader from "./components/layout/TheHeader.vue";
 import TheFooter from "./components/layout/TheFooter.vue";
 
 export default {
-  name: "app",
   components: {
     TheHeader,
     TheFooter,
   },
   data() {
-    return {
-      AdminDialog: true,
-    };
+    return {};
   },
 };
 </script>
