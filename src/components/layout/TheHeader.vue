@@ -22,7 +22,7 @@
     </v-tabs>
     <v-row no-gutters v-else>
       <v-col class="text-right">
-        <v-btn @click="signOut" color="teal lighten-4">Log Out</v-btn>
+        <v-btn @click="signOut" color="teal lighten-5">Log Out</v-btn>
       </v-col>
     </v-row>
   </v-app-bar>
