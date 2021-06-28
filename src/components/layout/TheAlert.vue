@@ -1,7 +1,7 @@
 <template>
   <v-alert
     class="alert"
-    transition="scroll-x-transition"
+    transition="fade-transition"
     type="info"
     :value="alert"
     border="right"
@@ -13,3 +13,13 @@
     Zarejestrowano pomyślnie
   </v-alert>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      alert: false,
+    };
+  },
+};
+</script>

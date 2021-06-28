@@ -37,7 +37,7 @@ import firebase from "firebase";
 export default {
   data() {
     return {
-      user: null,
+      user: "",
       elapsedTime: 0,
       timer: undefined,
     };

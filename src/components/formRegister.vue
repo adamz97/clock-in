@@ -53,8 +53,9 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
-
+import "firebase/database";
 import rulesMixin from "../mixins/rules.js";
+
 export default {
   mixins: [rulesMixin],
 
@@ -68,25 +69,25 @@ export default {
     };
   },
   methods: {
-    async register() {
-      try {
-        const user = await firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.user.email, this.user.password)
-          .then((res) => {
-            res.user.updateProfile({
-              displayName: this.user.name,
-            });
+    register() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.user.email, this.user.password)
+        .then((res) => {
+          res.user.updateProfile({
+            displayName: this.user.name,
           });
-        console.log(user);
-        alert("Successfully registered!!! Please login.");
-        this.$router.replace({ name: "login" });
-      } catch (error) {
-        alert(error);
-
-        this.user.email = "";
-        this.user.password = "";
-      }
+        })
+        .then((user) => {
+          console.log(user);
+          alert("Successfully registered !!! Please login.");
+          this.$router.replace({ name: "login" });
+        })
+        .catch((error) => {
+          alert(error);
+          this.user.email = "";
+          this.user.password = "";
+        });
     },
   },
 };

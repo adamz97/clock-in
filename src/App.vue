@@ -10,8 +10,8 @@
           </v-col>
         </v-row>
       </v-container>
+      <the-alert></the-alert>
     </v-main>
-
     <the-footer></the-footer>
   </v-app>
 </template>
@@ -19,11 +19,13 @@
 <script>
 import TheHeader from "./components/layout/TheHeader.vue";
 import TheFooter from "./components/layout/TheFooter.vue";
+import TheAlert from "./components/layout/TheAlert.vue";
 
 export default {
   components: {
     TheHeader,
     TheFooter,
+    TheAlert,
   },
   data() {
     return {};

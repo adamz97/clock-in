@@ -44,6 +44,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import rulesMixin from "../mixins/rules.js";
+
 export default {
   mixins: [rulesMixin],
   data() {
@@ -54,20 +55,20 @@ export default {
   },
   computed: {},
   methods: {
-    async login() {
-      try {
-        const login = await firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password);
-        console.log(login);
-        alert("Successfully logged in!!!");
-        this.$router.replace({ name: "userloggedin" });
-      } catch (error) {
-        console.log(error);
-        alert(error);
-        this.email = "";
-        this.password = "";
-      }
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((login) => {
+          this.$router.replace({ name: "userloggedin" });
+          console.log(login);
+          alert("Successfully logged in!!!");
+        })
+        .catch((error) => {
+          alert(error);
+          this.email = "";
+          this.password = "";
+        });
     },
   },
 };
