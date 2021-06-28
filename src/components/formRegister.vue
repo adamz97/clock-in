@@ -40,7 +40,7 @@
             @click="validate"
             type="submit"
             block
-            color="yellow lighten-3"
+            color="teal lighten-4"
           >
             Register
           </v-btn>

@@ -44,7 +44,7 @@ export default {
   text-align: center;
   font-size: 25px;
   padding: 10px;
-  background-color: #fff59d;
+  background-color: #b2dfdb;
 }
 .centerForm {
   padding: 50px;

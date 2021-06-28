@@ -5,7 +5,7 @@
       <v-container>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="6">
-            <v-toolbar-title align="center">Clock-In ⏳</v-toolbar-title>
+            <v-toolbar-title align="center">Clock-In</v-toolbar-title>
             <router-view> </router-view>
           </v-col>
         </v-row>

@@ -30,7 +30,7 @@
             @click="validate"
             block
             type="submit"
-            color="yellow lighten-3"
+            color="teal lighten-4"
           >
             Login
           </v-btn>

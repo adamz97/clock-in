@@ -6,21 +6,17 @@
       <v-row>
         <v-col sm="12">
           <v-card tile class="pa-4">
-            <v-btn color="yellow lighten-5" block tile @click="start"
+            <v-btn color="teal lighten-4" block tile @click="start"
               >Start</v-btn
             >
           </v-card>
           <v-row no-gutters>
-            <v-col cols="6" sm="6">
+            <v-col sm="12">
               <v-card tile class="pa-4">
-                <v-btn color="yellow lighten-5" block @click="reset"
-                  >Reset</v-btn
-                >
+                <v-btn color="blue lighten-4" block @click="reset">Reset</v-btn>
               </v-card>
-            </v-col>
-            <v-col cols="6" sm="6">
               <v-card tile class="pa-4">
-                <v-btn color="yellow lighten-5" block tile @click="stop"
+                <v-btn color="red lighten-4" block tile @click="stop"
                   >Stop</v-btn
                 >
               </v-card>
