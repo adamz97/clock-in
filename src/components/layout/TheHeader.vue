@@ -4,7 +4,6 @@
       :show-dialog="dialog"
       :tab-controll="tabControll"
       @close-dialog="cancelAdmin"
-      @save-dialog="submitAdmin"
     ></admin-dialog>
     <v-tabs
       v-if="!$route.meta.hideTabs"
@@ -22,7 +21,7 @@
     </v-tabs>
     <v-row no-gutters v-else>
       <v-col class="text-right">
-        <v-btn @click="signOut" color="teal lighten-4">Log Out</v-btn>
+        <v-btn @click="signOut" color="teal lighten-5">Log Out</v-btn>
       </v-col>
     </v-row>
   </v-app-bar>
@@ -58,10 +57,6 @@ export default {
     toggleDialog(tab) {
       this.tabControll = tab;
       this.dialog = true;
-    },
-    submitAdmin() {
-      this.$router.replace({ name: "admin" });
-      this.dialog = false;
     },
     cancelAdmin() {
       this.dialog = false;

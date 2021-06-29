@@ -2,6 +2,8 @@ export default {
   data() {
     return {
       valid: true,
+      adminNameRules: [(v) => !!v || "Name is required"],
+      adminPasswordRules: [(v) => !!v || "Password is required"],
       nameRules: [(v) => !!v || "Name is required"],
 
       emailRules: [

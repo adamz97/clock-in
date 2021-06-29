@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="500px">
-      <v-form>
+      <v-form ref="form" @submit="verifyAdmin">
         <v-card>
           <v-card-title>
             <span class="text-h5">Login as administrator</span>
@@ -10,6 +10,7 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field
+                  :rules="adminNameRules"
                   v-model="adminLogin"
                   label="Name*"
                   required
@@ -17,6 +18,7 @@
               </v-col>
               <v-col cols="12">
                 <v-text-field
+                  :rules="adminPasswordRules"
                   v-model="adminPassword"
                   label="Password*"
                   type="password"
@@ -49,7 +51,9 @@
 </template>
 
 <script>
+import rulesMixin from "@/mixins/rules.js";
 export default {
+  mixins: [rulesMixin],
   props: {
     showDialog: {
       type: Boolean,
@@ -60,17 +64,28 @@ export default {
       default: "none",
     },
   },
-  watch: {
-    showDialog: function() {
-      this.dialog = this.showDialog;
-    },
-  },
+
   data() {
     return {
       adminLogin: "",
       adminPassword: "",
       dialog: this.showDialog,
     };
+  },
+  methods: {
+    verifyAdmin() {
+      if (this.adminLogin == "admin" && this.adminPassword == "admin") {
+        this.$router.replace({ name: "admin" });
+        this.dialog = false;
+      } else {
+        alert("Wrong credentials");
+      }
+    },
+  },
+  watch: {
+    showDialog: function() {
+      this.dialog = this.showDialog;
+    },
   },
 };
 </script>

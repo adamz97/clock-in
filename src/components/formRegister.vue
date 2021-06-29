@@ -73,10 +73,18 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.user.email, this.user.password)
-        .then((res) => {
-          res.user.updateProfile({
-            displayName: this.user.name,
-          });
+        .then(() => {
+          firebase
+            .auth()
+            .currentUser.updateProfile({
+              displayName: this.user.name,
+            })
+            .then(() => {
+              firebase
+                .database()
+                .ref("users/" + firebase.auth().currentUser.uid)
+                .set({ name: this.user.name, email: this.user.email });
+            });
         })
         .then((user) => {
           console.log(user);

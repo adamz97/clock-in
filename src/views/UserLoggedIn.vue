@@ -2,28 +2,54 @@
   <v-sheet min-height="70vh" rounded="lg">
     <v-container>
       <p class="title">Hi, {{ user.displayName }}</p>
-      <p class="timer">{{ formattedElapsedTime }}</p>
-      <v-row>
-        <v-col sm="12">
-          <v-card tile class="pa-4">
-            <v-btn color="teal lighten-4" block tile @click="start"
-              >Start</v-btn
+
+      <v-container>
+        <v-row dense>
+          <v-col md="12">
+            <v-card tile
+              ><v-card-title
+                >Current time:
+                <strong> {{ currentTime }}</strong>
+              </v-card-title>
+              <v-card-subtitle>
+                Date: {{ currentDate }}
+              </v-card-subtitle></v-card
             >
-          </v-card>
-          <v-row no-gutters>
-            <v-col sm="12">
-              <v-card tile class="pa-4">
-                <v-btn color="blue lighten-4" block @click="reset">Reset</v-btn>
-              </v-card>
-              <v-card tile class="pa-4">
-                <v-btn color="red lighten-4" block tile @click="stop"
-                  >Stop</v-btn
-                >
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
+          </v-col>
+          <v-col md="6">
+            <v-card-title class="justify-center">
+              Start Work
+            </v-card-title>
+            <v-card-actions class="justify-center">
+              <v-btn
+                @click="startWork"
+                color="teal lighten-5"
+                height="200px"
+                block
+                tile
+              >
+                <v-icon color="white" size="150px">mdi-play</v-icon></v-btn
+              >
+            </v-card-actions>
+          </v-col>
+          <v-col md="6">
+            <v-card-title class="justify-center">
+              End Work
+            </v-card-title>
+            <v-card-actions class="justify-center"
+              ><v-btn
+                @click="endWork"
+                color="teal lighten-5"
+                height="200px"
+                block
+                tile
+              >
+                <v-icon color="white" size="150px">mdi-stop</v-icon></v-btn
+              >
+            </v-card-actions>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-container>
   </v-sheet>
 </template>
@@ -33,11 +59,13 @@ import firebase from "firebase";
 export default {
   data() {
     return {
-      user: "",
-      elapsedTime: 0,
-      timer: undefined,
+      user: {
+        startTime: "",
+        endTime: "",
+      },
     };
   },
+
   created() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -48,36 +76,36 @@ export default {
     });
   },
   computed: {
-    formattedElapsedTime() {
-      const date = new Date(null);
-      date.setSeconds(this.elapsedTime / 1000);
-      const utc = date.toUTCString();
-      return utc.substr(utc.indexOf(":") - 2, 8);
+    currentTime() {
+      const time = new Date().toLocaleTimeString("en-GB", {
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      });
+      return time;
+    },
+    currentDate() {
+      const date = new Date().toLocaleDateString();
+      return date;
     },
   },
   methods: {
-    start() {
-      this.timer = setInterval(() => {
-        this.elapsedTime += 1000;
-      }, 1000);
+    startWork() {
+      alert("Work started");
     },
-    stop() {
-      clearInterval(this.timer);
-    },
-    reset() {
-      this.elapsedTime = 0;
+    endWork() {
+      alert("Work ended");
     },
   },
 };
 </script>
 <style scoped>
-.timer {
+.time {
   padding: 20px;
-  text-align: center;
-  font-size: 75px;
+  font-size: 20px;
   margin-top: 30px;
 }
 .title {
-  padding: 15px;
+  padding: 20px;
 }
 </style>

@@ -1,8 +1,7 @@
 <template>
   <v-footer padless>
     <v-col class="text-center" cols="12">
-      {{ currentDate() }}
-      <strong>🤞</strong>
+      <strong>{{ currentDate() }}</strong>
     </v-col>
   </v-footer>
 </template>
