@@ -1,7 +1,7 @@
 <template>
   <v-sheet min-height="70vh" rounded="lg">
     <v-container>
-      <v-card tile>
+      <v-card class="teal lighten-5" tile>
         <v-card-title class="title">Hi, {{ user.displayName }}</v-card-title>
         <v-col md="12">
           <v-card tile
@@ -66,7 +66,7 @@ export default {
   },
   mounted() {
     this.interval = setInterval(() => {
-      this.time = Intl.DateTimeFormat(navigator.language, {
+      this.time = Intl.DateTimeFormat("en-GB", {
         hour: "numeric",
         minute: "numeric",
         second: "numeric",

@@ -93,3 +93,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.centerForm {
+  padding: 50px;
+}
+</style>

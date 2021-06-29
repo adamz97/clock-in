@@ -15,10 +15,14 @@
                 }}</v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action>
-                <p class="font-weight-medium">Work started: 08:00</p>
+                <v-list-item-text class="font-weight-medium"
+                  >Work started: 08:00</v-list-item-text
+                >
               </v-list-item-action>
               <v-list-item-action>
-                <p class="font-weight-medium">Work ended: 16:00</p>
+                <v-list-item-text class="font-weight-medium"
+                  >Work ended: 16:00</v-list-item-text
+                >
               </v-list-item-action>
             </v-list-item>
           </template>
