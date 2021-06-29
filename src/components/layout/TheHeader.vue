@@ -4,7 +4,6 @@
       :show-dialog="dialog"
       :tab-controll="tabControll"
       @close-dialog="cancelAdmin"
-      @save-dialog="submitAdmin"
     ></admin-dialog>
     <v-tabs
       v-if="!$route.meta.hideTabs"
@@ -58,10 +57,6 @@ export default {
     toggleDialog(tab) {
       this.tabControll = tab;
       this.dialog = true;
-    },
-    submitAdmin() {
-      this.$router.replace({ name: "admin" });
-      this.dialog = false;
     },
     cancelAdmin() {
       this.dialog = false;
