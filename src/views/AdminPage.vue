@@ -1,8 +1,8 @@
 <template>
   <v-sheet class="center" min-height="70vh" rounded="lg">
     <div class="centerForm">
-      <v-card tile>
-        <h3 class="employees">Employees</h3>
+      <v-card>
+        <h3 class="employees">Employee work times</h3>
         <v-list two-line>
           <template v-for="user in users">
             <v-list-item class="list" :key="user.id">
@@ -60,7 +60,7 @@ export default {
   text-align: center;
   font-size: 25px;
   padding: 10px;
-  background-color: #b2dfdb;
+  background-color: #c3e7e4;
 }
 .centerForm {
   padding: 50px;

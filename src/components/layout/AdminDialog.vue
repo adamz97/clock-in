@@ -14,6 +14,7 @@
                   v-model="adminLogin"
                   label="Name*"
                   required
+                  color="teal lighten-3"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -23,13 +24,12 @@
                   label="Password*"
                   type="password"
                   required
+                  color="teal lighten-3"
                 ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
-          <v-card-text>
-            <small>*indicates required field</small>
-          </v-card-text>
+
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="grey darken-3" text @click="$emit('close-dialog')">
@@ -77,8 +77,12 @@ export default {
       if (this.adminLogin == "admin" && this.adminPassword == "admin") {
         this.$router.replace({ name: "admin" });
         this.dialog = false;
+        this.adminLogin = "";
+        this.adminPassword = "";
       } else {
         alert("Wrong credentials");
+        this.adminLogin = "";
+        this.adminPassword = "";
       }
     },
   },
