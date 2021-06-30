@@ -36,6 +36,7 @@
           ></v-text-field>
 
           <v-btn
+            :loading="loading"
             :disabled="!valid"
             @click="validate"
             type="submit"
@@ -66,10 +67,12 @@ export default {
         email: "",
         password: "",
       },
+      loading: false,
     };
   },
   methods: {
     register() {
+      this.loading = true;
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.user.email, this.user.password)
@@ -87,8 +90,8 @@ export default {
             });
         })
         .then((user) => {
+          this.loading = false;
           console.log(user);
-          alert("Successfully registered !!! Please login.");
           this.$router.replace({ name: "login" });
         })
         .catch((error) => {

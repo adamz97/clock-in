@@ -1,10 +1,10 @@
 <template>
   <v-sheet min-height="70vh" rounded="lg">
     <v-container>
-      <v-card class="teal lighten-5" tile>
+      <v-card class="teal lighten-5">
         <v-card-title class="title">Hi, {{ user.displayName }}</v-card-title>
         <v-col md="12">
-          <v-card tile
+          <v-card
             ><v-card-title
               >Current time:
               <strong class="ml-2"> {{ time }}</strong>
@@ -20,11 +20,11 @@
           </v-card-title>
           <v-card-actions class="justify-center">
             <v-btn
+              :disabled="disabledStart"
               @click="startWork"
               color="green lighten-2"
-              height="200px"
+              height="100%"
               block
-              tile
             >
               <v-icon color="white" size="150px">mdi-play</v-icon></v-btn
             >
@@ -36,11 +36,11 @@
           </v-card-title>
           <v-card-actions class="justify-center"
             ><v-btn
+              :disabled="disabledEnd"
               @click="endWork"
               color="red lighten-2"
-              height="200px"
+              height="100%"
               block
-              tile
             >
               <v-icon color="white" size="150px">mdi-stop</v-icon></v-btn
             >
@@ -59,6 +59,8 @@ export default {
       user: [],
       interval: null,
       time: null,
+      disabledStart: false,
+      disabledEnd: true,
     };
   },
   beforeDestroy() {
@@ -90,20 +92,22 @@ export default {
   },
   methods: {
     startWork() {
-      let time = new Date().toLocaleTimeString("en-GB", {
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      });
-      return alert(`Work started at: ${time}`);
+      firebase
+        .database()
+        .ref("users/" + firebase.auth().currentUser.uid)
+        .update({ startTime: this.time });
+
+      this.disabledStart = true;
+      this.disabledEnd = false;
     },
     endWork() {
-      let time = new Date().toLocaleTimeString("en-GB", {
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      });
-      return alert(`Work ended at: ${time}`);
+      firebase
+        .database()
+        .ref("users/" + firebase.auth().currentUser.uid)
+        .update({ endTime: this.time });
+
+      this.disabledStart = false;
+      this.disabledEnd = true;
     },
   },
 };

@@ -49,6 +49,7 @@ export default {
       try {
         const data = await firebase.auth().signOut();
         console.log(data);
+
         this.$router.replace({ name: "login" });
       } catch (error) {
         alert(error);

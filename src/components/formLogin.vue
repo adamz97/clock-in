@@ -26,6 +26,7 @@
             required
           ></v-text-field>
           <v-btn
+            :loading="loading"
             :disabled="!valid"
             @click="validate"
             block
@@ -51,18 +52,20 @@ export default {
     return {
       email: "",
       password: "",
+      loading: false,
     };
   },
   computed: {},
   methods: {
     login() {
+      this.loading = true;
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then((login) => {
+          this.loading = false;
           this.$router.replace({ name: "userloggedin" });
           console.log(login);
-          alert("Successfully logged in!!!");
         })
         .catch((error) => {
           alert(error);
