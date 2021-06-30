@@ -1,53 +1,60 @@
 <template>
   <v-sheet min-height="70vh" rounded="lg">
-    <v-container>
-      <v-card class="teal lighten-5">
-        <v-card-title class="title">Hi, {{ user.displayName }}</v-card-title>
-        <v-col md="12">
-          <v-card
-            ><v-card-title
-              >Current time:
-              <strong class="ml-2"> {{ time }}</strong>
-            </v-card-title>
-            <v-card-subtitle> Date: {{ currentDate }} </v-card-subtitle></v-card
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="4000"
+      right
+      color="green lighten-2"
+    >
+      <span>Work time started.</span>
+      <!-- <v-btn flat color="white" @click="snackbar = false">Close</v-btn> -->
+    </v-snackbar>
+    <v-card class="teal lighten-5">
+      <v-card-title class="title">Hi, {{ user.displayName }}</v-card-title>
+      <v-col md="12">
+        <v-card
+          ><v-card-title
+            >Current time:
+            <strong class="ml-2"> {{ time }}</strong>
+          </v-card-title>
+          <v-card-subtitle> Date: {{ currentDate }} </v-card-subtitle></v-card
+        >
+      </v-col>
+    </v-card>
+    <v-row dense>
+      <v-col md="6">
+        <v-card-title class="justify-center">
+          Start Work
+        </v-card-title>
+        <v-card-actions class="justify-center">
+          <v-btn
+            :disabled="disabledStart"
+            @click="startWork"
+            color="green lighten-2"
+            height="100%"
+            block
           >
-        </v-col>
-      </v-card>
-      <v-row dense>
-        <v-col md="6">
-          <v-card-title class="justify-center">
-            Start Work
-          </v-card-title>
-          <v-card-actions class="justify-center">
-            <v-btn
-              :disabled="disabledStart"
-              @click="startWork"
-              color="green lighten-2"
-              height="100%"
-              block
-            >
-              <v-icon color="white" size="150px">mdi-play</v-icon></v-btn
-            >
-          </v-card-actions>
-        </v-col>
-        <v-col md="6">
-          <v-card-title class="justify-center">
-            End Work
-          </v-card-title>
-          <v-card-actions class="justify-center"
-            ><v-btn
-              :disabled="disabledEnd"
-              @click="endWork"
-              color="red lighten-2"
-              height="100%"
-              block
-            >
-              <v-icon color="white" size="150px">mdi-stop</v-icon></v-btn
-            >
-          </v-card-actions>
-        </v-col>
-      </v-row>
-    </v-container>
+            <v-icon color="white" size="150px">mdi-play</v-icon></v-btn
+          >
+        </v-card-actions>
+      </v-col>
+      <v-col md="6">
+        <v-card-title class="justify-center">
+          End Work
+        </v-card-title>
+        <v-card-actions class="justify-center"
+          ><v-btn
+            :disabled="disabledEnd"
+            @click="endWork"
+            color="red lighten-2"
+            height="100%"
+            block
+          >
+            <v-icon color="white" size="150px">mdi-stop</v-icon></v-btn
+          >
+        </v-card-actions>
+      </v-col>
+    </v-row>
   </v-sheet>
 </template>
 
@@ -61,6 +68,7 @@ export default {
       time: null,
       disabledStart: false,
       disabledEnd: true,
+      snackbar: false,
     };
   },
   beforeDestroy() {
@@ -99,6 +107,7 @@ export default {
 
       this.disabledStart = true;
       this.disabledEnd = false;
+      this.snackbar = true;
     },
     endWork() {
       firebase
