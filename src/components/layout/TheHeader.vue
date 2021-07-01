@@ -1,5 +1,23 @@
 <template>
   <v-app-bar app color="teal lighten-4">
+    <v-snackbar
+      v-model="snackbarLogout"
+      :timeout="2000"
+      color="blue lighten-2"
+      transition="slide-x-reverse-transition"
+    >
+      Logged out.
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarLogout = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <admin-dialog
       :show-dialog="dialog"
       :tab-controll="tabControll"
@@ -41,6 +59,7 @@ export default {
       tab: 0,
       dialog: false,
       tabControll: "None Tab",
+      snackbarLogout: false,
     };
   },
 
@@ -49,7 +68,7 @@ export default {
       try {
         const data = await firebase.auth().signOut();
         console.log(data);
-
+        this.snackbarLogout = true;
         this.$router.replace({ name: "login" });
       } catch (error) {
         alert(error);

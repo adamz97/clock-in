@@ -2,12 +2,33 @@
   <v-sheet min-height="70vh" rounded="lg">
     <v-snackbar
       v-model="snackbar"
-      :timeout="4000"
+      :timeout="2000"
       right
       color="green lighten-2"
+      transition="slide-x-reverse-transition"
     >
-      <span>Work time started.</span>
-      <!-- <v-btn flat color="white" @click="snackbar = false">Close</v-btn> -->
+      Work time started.
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="white" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
+
+    <v-snackbar
+      v-model="snackbarEnd"
+      :timeout="2000"
+      right
+      color="red lighten-2"
+      transition="slide-x-reverse-transition"
+    >
+      Work time ended.
+      <template v-slot:action="{ attrs }">
+        <v-btn color="white" text v-bind="attrs" @click="snackbarEnd = false">
+          Close
+        </v-btn>
+      </template>
     </v-snackbar>
     <v-card class="teal lighten-5">
       <v-card-title class="title">Hi, {{ user.displayName }}</v-card-title>
@@ -69,6 +90,7 @@ export default {
       disabledStart: false,
       disabledEnd: true,
       snackbar: false,
+      snackbarEnd: false,
     };
   },
   beforeDestroy() {
@@ -117,6 +139,7 @@ export default {
 
       this.disabledStart = false;
       this.disabledEnd = true;
+      this.snackbarEnd = true;
     },
   },
 };
